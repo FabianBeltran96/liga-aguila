@@ -6,12 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="matches")
 public class MatchGame {
 
     @Id
-    @SequenceGenerator(name = "match_sequence", sequenceName = "match_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private Long id;
@@ -19,13 +18,13 @@ public class MatchGame {
     @Getter
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Getter
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localTeamId", referencedColumnName = "id")
+    @JoinColumn(name = "local_team_id", referencedColumnName = "id")
     private Team localTeam;
 
     @Getter
@@ -35,7 +34,7 @@ public class MatchGame {
     @Getter
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "visitorTeamId", referencedColumnName = "id")
+    @JoinColumn(name = "visitor_team_id", referencedColumnName = "id")
     private Team visitorTeam;
 
     @Getter
